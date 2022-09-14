@@ -1,10 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
+
+    packagingOptions {
+        resources.excludes.add("androidsupportmultidexversion.txt")
+    }
 
     defaultConfig {
         applicationId "com.example.strayfriends"
@@ -12,8 +18,11 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures{
+        dataBinding true
     }
 
     buildTypes {
@@ -33,11 +42,41 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.6'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.3.0'
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    def lifecycle_version = "2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    def fragment_version = "1.5.2"
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1'
+    
+    def cardview_version = "1.0.0"
+    implementation "androidx.cardview:cardview:$cardview_version"
+
+    // Recyclerview
+    def recyclerview_version = "1.2.1"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
+    // navigation
+    def navigation_version = "2.6.0-alpha01"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
 }
