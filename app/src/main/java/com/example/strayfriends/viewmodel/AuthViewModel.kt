@@ -24,6 +24,10 @@ class AuthViewModel (application : Application) : AndroidViewModel(application) 
         return repository.isLogged()
     }
 
+    fun getUsername() {
+        return repository.getUserName()
+    }
+
     fun handleLogout() {
         repository.logOut()
     }

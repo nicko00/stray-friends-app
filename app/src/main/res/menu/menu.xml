@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/productsFragment"
+        android:icon="@drawable/ic_home_24"
+        android:title="Início"/>
+
+    <item
+        android:id="@id/searchFragment"
+        android:icon="@drawable/ic_search_24"
+        android:title="Pesquisar"/>
+
+    <item
+        android:id="@id/createFragment"
+        android:icon="@drawable/ic_trade_24"
+        android:title="Venda"/>
+</menu>

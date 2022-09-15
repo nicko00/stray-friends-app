@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat.startActivityForResult
 import com.example.strayfriends.HomeActivity
 import com.example.strayfriends.MainActivity
 import com.example.strayfriends.NavGraphDirections
+import com.example.strayfriends.model.UserModel
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -30,6 +31,7 @@ class AuthenticationRepository (private var application : Application){
     private var mAuth : FirebaseAuth = FirebaseAuth.getInstance()
     private var uid = mAuth.currentUser?.uid
     private var firestoreDb = Firebase.firestore
+    private val account : GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(application)
 
     fun registerAcc(email : String, password : String, user : String){
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
@@ -38,7 +40,6 @@ class AuthenticationRepository (private var application : Application){
                 val userObj = hashMapOf("userName" to user)
                 uid = mAuth.currentUser?.uid.toString()
                 Toast.makeText(application, "Conta criada com sucesso", Toast.LENGTH_SHORT).show()
-                Log.d("Firebase", "Login feito")
                 firestoreDb.collection("users").document(uid!!).set(userObj)
             }
             else{
@@ -64,10 +65,8 @@ class AuthenticationRepository (private var application : Application){
             if (task.isSuccessful){
                 Toast.makeText(application, "Bem vindo", Toast.LENGTH_SHORT).show()
                 Log.d("Firebase", "deu bom")
-
-                val i = Intent(application, HomeActivity::class.java)
-                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                application.startActivity(i)
+                logUserToken()
+                goToHomeActivity()
             }
             else{
                 if (!task.isSuccessful) {
@@ -85,9 +84,21 @@ class AuthenticationRepository (private var application : Application){
         }
     }
 
+    fun getUserName(){
+        var userName : String?
+        val doc = firestoreDb.collection("users").document(uid!!)
+        doc.get().addOnSuccessListener { document ->
+            val user = document.toObject(UserModel::class.java)
+            userName = user?.userName
+            Log.d("Usename: ", "$userName")
+        }
+    }
+
     fun logOut(){
         mAuth.signOut()
+        goToMainActivity()
         NavGraphDirections.actionGlobalLoginFragment()
+        logUserToken()
     }
 
     fun isLogged() : Boolean {
@@ -95,4 +106,19 @@ class AuthenticationRepository (private var application : Application){
         return user != null
     }
 
+    private fun goToHomeActivity(){
+        val i = Intent(application, HomeActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        application.startActivity(i)
+    }
+
+    private fun goToMainActivity(){
+        val i = Intent(application, MainActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        application.startActivity(i)
+    }
+
+    private fun logUserToken(){
+        Log.d("Firebase", "${if(mAuth.currentUser != null) uid else account?.id}")
+    }
 }

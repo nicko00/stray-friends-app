@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.strayfriends"
-        minSdk 19
+        minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -47,6 +47,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    implementation 'com.google.code.gson:gson:2.8.7'
+
+
     // Firebase
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.6'
@@ -69,6 +72,7 @@ dependencies {
     
     def cardview_version = "1.0.0"
     implementation "androidx.cardview:cardview:$cardview_version"
+    implementation 'com.google.android.material:material:1.0.0'
 
     // Recyclerview
     def recyclerview_version = "1.2.1"

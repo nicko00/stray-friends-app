@@ -7,6 +7,7 @@
     <color name="purple_link">#6E14E0</color>
     <color name="card_bg">#9023E7</color>
     <color name="view_bg">#ccc</color>
+    <color name="card_type">#E1C9FF</color>
     <color name="card_border">#9858EA</color>
     <color name="purple_ph">#5200FF</color>
     <color name="teal_200">#FF03DAC5</color>

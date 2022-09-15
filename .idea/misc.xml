@@ -7,10 +7,16 @@
         <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/drawable/custom_edit_text.xml" value="0.1" />
         <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/drawable/google_img_smaller.xml" value="0.1" />
-        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/activity_home.xml" value="0.1" />
-        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/activity_main.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/drawable/gradient_bg.xml" value="0.1" />
+        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/activity_home.xml" value="0.17" />
+        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/card_product.xml" value="0.25" />
+        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/fragment_create.xml" value="0.1" />
         <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/fragment_login.xml" value="0.2" />
+        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/fragment_products.xml" value="0.18" />
         <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/fragment_register.xml" value="0.22" />
+        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="..\:/Users/nickm/OneDrive/Documentos/GitHub/stray-friends/stray-friends-app/app/src/main/res/menu/menu.xml" value="0.1" />
       </map>
     </option>
   </component>

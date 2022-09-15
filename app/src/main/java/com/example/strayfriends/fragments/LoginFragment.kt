@@ -105,8 +105,7 @@ class LoginFragment : Fragment(){
                     GoogleSignIn.getSignedInAccountFromIntent(data)
 
                 try {
-                    val account: GoogleSignInAccount? =
-                        GoogleSignIn.getLastSignedInAccount(requireActivity())
+                    val account: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(requireActivity())
 
                     if (account != null) {
                         val user = hashMapOf("userName" to account.displayName.toString())
