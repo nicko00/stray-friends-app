@@ -15,4 +15,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="edit_bg">#A278FB</color>
+    <color name="title">#8945BE</color>
+    <color name="product_name">#8000FF</color>
 </resources>

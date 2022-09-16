@@ -42,8 +42,6 @@ class HomeActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-
-
         val navHost = supportFragmentManager.findFragmentById(R.id.homeFragmentContainerView) as NavHostFragment
         navController = navHost.navController
 

@@ -7,10 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.strayfriends.R
+import com.example.strayfriends.listener.ProductOnClickListener
 import com.example.strayfriends.model.Product
 import org.w3c.dom.Text
 
-class ProductsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ProductsAdapter(private var clickListener : ProductOnClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var products : MutableList<Product> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ProductsViewHolder (
@@ -21,7 +22,7 @@ class ProductsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is ProductsViewHolder ->{
-                holder.bind(products[position])
+                holder.bind(products[position], clickListener)
             }
         }
     }
@@ -40,7 +41,7 @@ class ProductsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val prodPrice : TextView = itemView.findViewById(R.id.product_price_textView)
         private val prodType : TextView = itemView.findViewById(R.id.product_type_textView)
 
-        fun bind(product : Product){
+        fun bind(product : Product, action : ProductOnClickListener){
             val priceModel = product.price
             if(priceModel == "" && priceModel <= "0"){
                 prodPrice.text = "Grátis"
@@ -49,6 +50,10 @@ class ProductsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             prodName.text = product.name
             prodType.text = product.type
+
+            itemView.setOnClickListener() {
+                action.onItemClick(product)
+            }
         }
     }
 }

@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.strayfriends.R
 import com.example.strayfriends.adapter.ProductsAdapter
 import com.example.strayfriends.databinding.FragmentProductsBinding
+import com.example.strayfriends.listener.ProductOnClickListener
 import com.example.strayfriends.model.Product
 import com.example.strayfriends.repository.FirestoreRepository
 import com.example.strayfriends.viewmodel.AuthViewModel
@@ -23,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class ProductsFragment : Fragment(){
+class ProductsFragment : Fragment(), ProductOnClickListener {
     private lateinit var binding : FragmentProductsBinding
     private lateinit var productsAdapter : ProductsAdapter
     private lateinit var layoutManager : LinearLayoutManager
@@ -31,6 +33,7 @@ class ProductsFragment : Fragment(){
     private var page = 1
     private val firestoreDB : FirebaseFirestore = Firebase.firestore
     private lateinit var listProduct : List<Product>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,7 +56,7 @@ class ProductsFragment : Fragment(){
 
     private fun setupAdapter() {
         val productsRecycler = binding.productsRecyclerView
-        productsAdapter = ProductsAdapter()
+        productsAdapter = ProductsAdapter(this)
 
         productsRecycler.layoutManager  = LinearLayoutManager(context)
         productsRecycler.adapter = productsAdapter
@@ -67,12 +70,13 @@ class ProductsFragment : Fragment(){
                     listProduct = document.toObjects(Product::class.java)
                     productsAdapter.submitList(listProduct)
                     binding.progressBar.visibility = View.INVISIBLE
+                    getPage()
                 }
             }
         }
     }
 
-    fun getPage() {
+    private fun getPage() {
         binding.productsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val visibleItemCount = layoutManager.childCount
@@ -89,5 +93,10 @@ class ProductsFragment : Fragment(){
             }
 
         })
+    }
+    override fun onItemClick(product : Product){
+        findNavController().navigate(
+            ProductsFragmentDirections.actionProductsFragmentToDetailsFragment(product)
+        )
     }
 }

@@ -90,7 +90,7 @@ class AuthenticationRepository (private var application : Application){
         doc.get().addOnSuccessListener { document ->
             val user = document.toObject(UserModel::class.java)
             userName = user?.userName
-            Log.d("Usename: ", "$userName")
+            Log.d("Usename: ", "$userName, ${mAuth.currentUser?.email}")
         }
     }
 
@@ -120,5 +120,9 @@ class AuthenticationRepository (private var application : Application){
 
     private fun logUserToken(){
         Log.d("Firebase", "${if(mAuth.currentUser != null) uid else account?.id}")
+    }
+
+    private fun getUserEmail() : String?{
+        return mAuth.currentUser?.email
     }
 }

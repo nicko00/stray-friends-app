@@ -1,16 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="CREATE FRAGMENT"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/title_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:text="Anunciar um produto"
+                    android:textColor="@color/title"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/create_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/create_custom_edit"
+                    android:hint="Nome"
+                    android:padding="8dp"
+                    android:textColor="@color/purple_500"
+                    android:textColorHint="@color/purple_500"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_create" />
+
+                <EditText
+                    android:id="@+id/create_product_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/create_custom_edit"
+                    android:hint="Classificação"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/purple_500"
+                    android:textColorHint="@color/purple_500"
+                    app:layout_constraintEnd_toStartOf="@+id/create_product_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/create_product_name" />
+
+                <EditText
+                    android:id="@+id/create_product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/create_custom_edit"
+                    android:hint="Preço"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="52dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/purple_500"
+                    android:textColorHint="@color/purple_500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/create_product_name" />
+
+                <EditText
+                    android:id="@+id/create_product_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/create_custom_edit"
+                    android:hint="Descreva o produto"
+                    android:padding="12dp"
+                    android:textColor="@color/title"
+                    android:textColorHint="@color/purple_500"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/create_product_type" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/create_product_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/create_product_description"
+                    android:layout_margin="20dp"
+                    android:text="Anunciar"
+                    android:textSize="20sp"
+                    android:textAllCaps="false"
+                    app:strokeColor="@color/card_bg"
+                    app:strokeWidth="2dp"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="24dp"
+                    android:textColor="@color/white"
+                    app:cornerRadius="8dp"
+                    android:backgroundTint="@color/card_bg"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
