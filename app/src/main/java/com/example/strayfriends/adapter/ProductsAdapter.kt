@@ -31,8 +31,18 @@ class ProductsAdapter(private var clickListener : ProductOnClickListener) : Recy
         return products.size
     }
 
-    fun submitList (productsList : List<Product>) {
+    fun submitList (productsList : MutableList<Product>) {
         products.addAll(productsList)
+        notifyDataSetChanged()
+    }
+
+    fun submitProduct(mProduct : Product){
+        products.add(mProduct)
+        notifyDataSetChanged()
+    }
+
+    fun deleteList(){
+        products.clear()
         notifyDataSetChanged()
     }
 
@@ -56,4 +66,5 @@ class ProductsAdapter(private var clickListener : ProductOnClickListener) : Recy
             }
         }
     }
+
 }

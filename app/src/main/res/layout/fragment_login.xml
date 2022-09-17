@@ -22,6 +22,8 @@
     <EditText
         android:id="@+id/email_login_edit"
         android:textColor="@color/white"
+        android:singleLine="true"
+        android:scrollHorizontally="true"
         android:layout_width="match_parent"
         android:textColorHint="@color/white"
         android:layout_marginHorizontal="60dp"
@@ -40,6 +42,8 @@
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:textColorHint="@color/white"
+        android:singleLine="true"
+        android:scrollHorizontally="true"
         android:layout_marginHorizontal="60dp"
         android:layout_marginVertical="12dp"
         android:hint="Senha"

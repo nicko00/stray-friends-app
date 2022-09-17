@@ -22,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -32,7 +33,7 @@ class ProductsFragment : Fragment(), ProductOnClickListener {
     private lateinit var dbVM : FirestoreViewModel
     private var page = 1
     private val firestoreDB : FirebaseFirestore = Firebase.firestore
-    private lateinit var listProduct : List<Product>
+    private lateinit var listProduct : MutableList<Product>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +64,7 @@ class ProductsFragment : Fragment(), ProductOnClickListener {
     }
 
     fun getProduct() {
-        firestoreDB.collection("products").get().addOnCompleteListener { task->
+        firestoreDB.collection("products").orderBy("id", Query.Direction.DESCENDING).get().addOnCompleteListener { task->
             if (task.isSuccessful){
                 val document = task.result
                 if(!document.isEmpty){

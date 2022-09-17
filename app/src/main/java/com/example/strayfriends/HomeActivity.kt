@@ -2,6 +2,7 @@ package com.example.strayfriends
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -67,5 +68,15 @@ class HomeActivity : AppCompatActivity() {
         binding.signOutBtn.setOnClickListener {
             authVM.handleLogout()
         }
+        binding.userProfileImage.setOnClickListener {
+            onClickUser()
+        }
+        binding.userNameTextView.setOnClickListener {
+            onClickUser()
+        }
+    }
+
+    private fun onClickUser() {
+        Toast.makeText(this, "Em breve", Toast.LENGTH_SHORT).show()
     }
 }

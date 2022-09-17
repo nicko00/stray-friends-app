@@ -82,7 +82,7 @@ class RegisterFragment () : Fragment() {
         firestoreDB.collection("users").addSnapshotListener{ snapshot, e ->
             if(e != null) Log.e("Firestore", "Falha no snapshot")
 
-            if (snapshot != null && !snapshot.isEmpty && !snapshot.metadata.isFromCache){
+            if (snapshot != null && !snapshot.isEmpty && !snapshot.metadata.isFromCache && snapshot.metadata.hasPendingWrites()){
                 goToLoginFragment()
                 Log.d("Firestore", "$snapshot -- ${snapshot.metadata}")
             }

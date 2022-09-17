@@ -1,6 +1,7 @@
 package com.example.strayfriends.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +13,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.strayfriends.R
 import com.example.strayfriends.databinding.FragmentCreateBinding
 import com.example.strayfriends.viewmodel.FirestoreViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class CreateFragment : Fragment(){
     private lateinit var binding : FragmentCreateBinding
     private lateinit var firestoreVM : FirestoreViewModel
+    val firestoreDB : FirebaseFirestore = Firebase.firestore
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,14 +53,23 @@ class CreateFragment : Fragment(){
                 binding.createProductPrice.setText("")
                 binding.createProductDescription.setText("")
                 Toast.makeText(context, "Anúncio enviado", Toast.LENGTH_SHORT).show()
-                goToProductFragment()
             } else{
                 binding.createProductName.error = "Preencha todos os campos"
                 binding.createProductType.error = "Preencha todos os campos"
                 binding.createProductPrice.error = "Preencha todos os campos"
             }
         }
+        firestoreDB.collection("products").addSnapshotListener{ snapshot, e ->
+            if(e != null) Log.e("Firestore", "Falha no snapshot")
+
+            if (snapshot != null && !snapshot.isEmpty && !snapshot.metadata.isFromCache && snapshot.metadata.hasPendingWrites()){
+                goToProductFragment()
+                Log.d("Firestore", "$snapshot -- ${snapshot.metadata}")
+            }
+        }
     }
+
+
 
     private fun goToProductFragment() {
         findNavController().navigate(
